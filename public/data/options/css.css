@@ -10,7 +10,7 @@
   --text-sub:     #a0a0a0;
   --text-dim:     #656565;
   --accent:       #919191;
-  --accent-hover: #656565;
+  --accent-hover: #b0b0b0;
   --green:        #34a853;
   --red:          #e04040;
   --red-dim:      #3a1818;
@@ -47,18 +47,24 @@ header {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   margin-bottom: 1.5rem;
+  overflow: hidden;
   min-width: 0;
+}
+
+.header-icon {
+  flex-shrink: 0;
+  display: flex;
 }
 
 .header-icon img {
   display: block;
-  flex-shrink: 0;
   border-radius: 50%;
 }
 
 .header-text {
   min-width: 0;
   flex: 1;
+  overflow: hidden;
 }
 
 .header-text h1 {
@@ -263,8 +269,8 @@ textarea {
 }
 
 textarea:focus {
-  background: #1e1e1e;
-  box-shadow: inset 0 0 0 2px var(--accent);
+  background: #1a1a1a;
+  box-shadow: inset 0 0 0 2px var(--border2);
 }
 
 textarea::placeholder {
@@ -296,6 +302,7 @@ footer {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+  padding-top: 8px;
   min-width: 0;
 }
 
@@ -310,7 +317,7 @@ button {
   background: var(--surface2);
   color: var(--text-sub);
   cursor: pointer;
-  transition: background 0.1s, border-color 0.1s, color 0.1s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
@@ -318,9 +325,31 @@ button {
 }
 
 button:hover {
-  background: #2c2c2c;
+  background: #303030;
   color: var(--text);
-  border-color: #484848;
+  border-color: #606060;
+}
+
+button:active {
+  background: #383838;
+}
+
+.btn-primary {
+  background: var(--surface2);
+  border-color: var(--accent);
+  color: var(--accent);
+  padding: 0 18px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #131313;
+}
+
+.btn-primary:active {
+  background: var(--accent-hover);
 }
 
 .btn-danger {
@@ -332,18 +361,11 @@ button:hover {
 .btn-danger:hover {
   background: #4a1a1a;
   border-color: var(--red);
+  color: #ff6b6b;
 }
 
-.btn-primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-  padding: 0 18px;
-}
-
-.btn-primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+.btn-danger:active {
+  background: #5a2020;
 }
 
 #toast {
