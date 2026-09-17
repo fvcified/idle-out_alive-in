@@ -95,7 +95,11 @@ chrome.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === 'install') {
     chrome.tabs.create({ url: chrome.runtime.getURL('data/options/index.html') });
   } else if (reason === 'update') {
-    chrome.storage.local.get({ faqs: true }, (prefs) => {
+    chrome.storage.local.get({ faqs: true, _resetting: false }, (prefs) => {
+      if (prefs._resetting) {
+        chrome.storage.local.remove('_resetting');
+        return;
+      }
       if (prefs.faqs) {
         chrome.tabs.create({ url: chrome.runtime.getManifest().homepage_url + '/wiki/FAQ' });
       }

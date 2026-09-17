@@ -100,7 +100,9 @@ document.getElementById('reset').addEventListener('click', (e) => {
     notify('Double-click to reset all settings', 2000);
   } else {
     chrome.storage.local.clear(() => {
-      chrome.runtime.reload();
+      chrome.storage.local.set({ _resetting: true }, () => {
+        chrome.runtime.reload();
+      });
     });
   }
 });
