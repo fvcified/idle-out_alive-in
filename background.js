@@ -39,12 +39,19 @@ const updateBadge = async (tabId, hostname) => {
   if (typeof tabId !== 'number' || tabId < 0) return;
   if (!hostname) {
     chrome.action.setBadgeText({ tabId, text: '' });
+    chrome.action.setTitle({ tabId, title: 'Toggle Idle Out, Alive In for this site' });
     return;
   }
   const { hosts } = await chrome.storage.local.get({ hosts: [] });
   const active = matchesHost(hosts, hostname);
-  chrome.action.setBadgeText({ tabId, text: active ? 'ON' : '' });
+  chrome.action.setBadgeText({ tabId, text: active ? '✓' : '' });
   chrome.action.setBadgeBackgroundColor({ tabId, color: '#34a853' });
+  chrome.action.setTitle({
+    tabId,
+    title: active
+      ? `Active on ${hostname}\nClick to disable`
+      : `Click to enable on ${hostname}`
+  });
 };
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
