@@ -55,10 +55,10 @@ idle-out_alive-in/
 │     ├─ index.html
 │     └─ js.js
 ├─ icons/
-│  └─ wcat-16.png
-│  └─ wcat-48.png
-│  └─ wcat-128.png
-│  └─ wcat-256.png
+│  ├─ wcat-16.png
+│  ├─ wcat-48.png
+│  ├─ wcat-128.png
+│  ├─ wcat-256.png
 │  └─ wcat.png
 ├─ background.js
 ├─ content.js
