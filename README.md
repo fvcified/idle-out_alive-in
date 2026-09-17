@@ -69,7 +69,7 @@ npm run build:firefox  # production build for Firefox
 npm run check          # full TypeScript type-check (tsc)
 ```
 
-Chrome doesn't auto-reload extensions when `dist/` changes — after a rebuild, click the reload icon on the extension's card in `chrome://extensions`. If you edited `content.ts` or `inject.ts`, also refresh the tab you're testing on so the content script re-injects.
+Chrome doesn't auto-reload extensions when `dist/` changes after a rebuild, click the reload icon on the extension's card in `chrome://extensions`. If you edited `content.ts` or `inject.ts`, also refresh the tab you're testing on so the content script re-injects.
 
 ## Project Structure
 
