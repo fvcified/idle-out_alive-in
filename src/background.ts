@@ -76,12 +76,26 @@ browser.action.onClicked.addListener(async (tab) => {
   if (!hostname || typeof tab.id !== 'number') return;
 
   const { hosts } = (await browser.storage.local.get({ hosts: [] as string[] })) as { hosts: string[] };
-  const exists = hosts.includes(hostname);
-  const newHosts = exists ? hosts.filter((h) => h !== hostname) : [...hosts, hostname];
+  const exactExists = hosts.includes(hostname);
+  const activeViaWildcard = !exactExists && matchesHost(hosts, hostname);
+
+  let newHosts: string[];
+  let willBeActive: boolean;
+
+  if (exactExists) {
+    newHosts = hosts.filter((h) => h !== hostname);
+    willBeActive = matchesHost(newHosts, hostname);
+  } else if (activeViaWildcard) {
+    newHosts = [...hosts, hostname];
+    willBeActive = true;
+  } else {
+    newHosts = [...hosts, hostname];
+    willBeActive = true;
+  }
 
   await browser.storage.local.set({ hosts: newHosts });
   await updateBadge(tab.id, hostname);
-  setToggleTitle(tab.id, hostname, !exists);
+  setToggleTitle(tab.id, hostname, willBeActive);
 
   pendingToggleReload.set(tab.id, hostname);
   browser.tabs.reload(tab.id);
