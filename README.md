@@ -51,6 +51,8 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 5. Click **Load Temporary Add-on**
 6. Select any file inside the `dist-firefox/` folder
 
+> **Note:** Firefox only supports temporary add-ons for unsigned extensions. The extension will be unloaded when Firefox is closed. To use it permanently, the extension must be signed via [AMO](https://addons.mozilla.org).
+
 ## Usage
 
 1. Open the site you want to enable the extension on
@@ -109,10 +111,16 @@ idle-out_alive-in/
 └─ tsconfig.json
 ```
 
+## Contributing
+
+Found a bug or have a feature request? [Open an issue](https://github.com/fvcified/idle-out_alive-in/issues).
+
+If you'd like to modify or build on this, feel free to [fork the repository](https://github.com/fvcified/idle-out_alive-in/fork).
+
 ## Credit & Reference
 
 The concept and part of the technical approach (overriding visibility properties, blocking visibility related events, per hostname whitelisting) was inspired by the [Always Active Window](https://webextension.org/listing/always-active.html) extension.
 
 ## Note
 
-This project is a personal experiment built for my own use, with no guarantee of full compatibility on every site. If you'd like to use or modify it, feel free to [fork this repository](https://github.com/fvcified/idle-out_alive-in/fork).
+This project is a personal experiment built for my own use, with no guarantee of full compatibility on every site.
