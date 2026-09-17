@@ -47,16 +47,6 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 ## Project Structure
 
 ```plain
-.git/             git configuration
-data/options/     Options page (index.html, css.css, js.js)
-icons/            Extension icons
-background.js     Service worker: toggle host, badge, validation
-content.js        Content script: reads preferences and injects inject.js
-inject.js         Runs in page context (overrides and event blocking)
-manifest.json     Manifest V3 config
-```
-
-```plain
 idle-out_alive-in/
 ├─ .git/
 ├─ data/
