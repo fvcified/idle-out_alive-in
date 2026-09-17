@@ -101,4 +101,4 @@ The concept and part of the technical approach (overriding visibility properties
 
 ## Note
 
-This project is a personal experiment built for my own use, with no guarantee of full compatibility on every site. If you'd like to use or modify it, feel free to fork this repository.
+This project is a personal experiment built for my own use, with no guarantee of full compatibility on every site. If you'd like to use or modify it, feel free to [fork this repository](https://github.com/fvcified/idle-out_alive-in/fork).
