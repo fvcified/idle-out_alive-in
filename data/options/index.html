@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Options Page -- Idle Out, Alive In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="header-icon">
+        <img src="../../icons/wcat.png" width="52" height="65" alt="icon">
+      </div>
+      <div class="header-text">
+        <h1>Idle Out, Alive In</h1>
+        <p>Keep your sessions alive and prevent idle timeouts</p>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="card">
+        <div class="card-header">
+          <span class="badge badge-dim">Experimental</span>
+          <h2>Visibility Overrides</h2>
+          <p class="card-desc">Override browser-level document properties. May not work on all sites.</p>
+        </div>
+        <div class="toggle-list muted-section">
+          <div class="toggle-row">
+            <label class="toggle-label" for="visibilityState">Overwrite <code>document.visibilityState</code></label>
+            <label class="switch">
+              <input type="checkbox" id="visibilityState">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="hidden">Overwrite <code>document.hidden</code></label>
+            <label class="switch">
+              <input type="checkbox" id="hidden">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <span class="badge badge-active">Active</span>
+          <h2>Event Blocking</h2>
+          <p class="card-desc">Prevent sites from detecting when you switch tabs or move focus away.</p>
+        </div>
+        <div class="toggle-list">
+          <div class="toggle-row">
+            <label class="toggle-label" for="blur">Globally block <code>blur</code> events</label>
+            <label class="switch"><input type="checkbox" id="blur"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="focus">Globally block <code>focus</code> events</label>
+            <label class="switch"><input type="checkbox" id="focus"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="visibility">Globally block <code>visibilitychange</code> events</label>
+            <label class="switch"><input type="checkbox" id="visibility"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="mouseleave">Globally block <code>mouseleave</code> events</label>
+            <label class="switch"><input type="checkbox" id="mouseleave"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="mouseout">Globally block <code>mouseout</code> events</label>
+            <label class="switch"><input type="checkbox" id="mouseout"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="pointercapture">Globally block <code>lostpointercapture</code> events</label>
+            <label class="switch"><input type="checkbox" id="pointercapture"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row" id="redirect-container">
+            <label class="toggle-label" for="redirect">Block JS redirection when page is hidden</label>
+            <label class="switch"><input type="checkbox" id="redirect"><span class="slider"></span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2>General</h2>
+        </div>
+        <div class="toggle-list">
+          <div class="toggle-row">
+            <label class="toggle-label" for="log">Display logs <span class="toggle-hint">(for debugging purpose only)</span></label>
+            <label class="switch"><input type="checkbox" id="log"><span class="slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <label class="toggle-label" for="faqs">Open FAQs page on updates <span class="toggle-hint">(recommended)</span></label>
+            <label class="switch"><input type="checkbox" id="faqs"><span class="slider"></span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2>Active Sites</h2>
+          <p class="card-desc">The extension is OFF by default. Add hostnames here, or click the toolbar icon on a site to toggle it on/off. Separate with commas.</p>
+        </div>
+        <textarea id="hosts" rows="6" placeholder="example.com, *.example.com, app.work.com"></textarea>
+      </section>
+
+      <section class="card">
+        <div class="card-header">
+          <h2>Policies</h2>
+          <p class="card-desc">A JSON object to prevent blocking of some events that conflict with particular hostnames.</p>
+        </div>
+        <textarea id="policies" rows="7" placeholder='{
+  "docs.google.com": ["blur"]
+}'></textarea>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="footer-actions">
+        <button id="support">Support Development</button>
+        <button id="report">Report Bugs</button>
+      </div>
+      <div class="footer-save">
+        <button id="reset" class="btn-danger">Factory Reset</button>
+        <button id="save" class="btn-primary">Save Options</button>
+        <span id="toast"></span>
+      </div>
+    </footer>
+
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>

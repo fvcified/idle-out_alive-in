@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Idle Out, Alive In",
+  "version": "1.0.0",
+  "description": "Prevent idle timeout by simulating user activity and blocking visibility detection.",
+  "homepage_url": "https://github.com/fvcified/idle-out_alive-in",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "options_ui": {
+    "page": "data/options/index.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "Toggle Idle Out, Alive In for this site"
+  }
+}
