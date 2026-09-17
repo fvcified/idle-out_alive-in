@@ -48,7 +48,7 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 
 ```plain
 .git/             git configuration
-data/options/     Options page (index.html, css.css, index.js)
+data/options/     Options page (index.html, css.css, js.js)
 icons/            Extension icons
 background.js     Service worker: toggle host, badge, validation
 content.js        Content script: reads preferences and injects inject.js
