@@ -47,12 +47,29 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 ## Project Structure
 
 ```plain
-manifest.json          Manifest V3 config
-background.js          Service worker: toggle host, badge, validation
-content.js              Content script: reads preferences and injects inject.js
-inject.js               Runs in page context (overrides and event blocking)
-data/options/           Options page (index.html, index.css, index.js)
-icons/                  Extension icons
+manifest.json     Manifest V3 config
+background.js     Service worker: toggle host, badge, validation
+content.js        Content script: reads preferences and injects inject.js
+inject.js         Runs in page context (overrides and event blocking)
+data/options/     Options page (index.html, index.css, index.js)
+icons/            Extension icons
+```
+
+```plain
+idle-out_alive-in/
+├─ .git/
+├─ data/
+│  └─ options/
+│     ├─ index.css
+│     ├─ index.html
+│     └─ index.js
+├─ icons/
+│  └─ wcat.png
+├─ background.js
+├─ content.js
+├─ inject.js
+├─ manifest.json
+└─ README.md
 ```
 
 ## Credit & Reference
