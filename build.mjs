@@ -10,17 +10,21 @@ const outdir = firefox ? 'dist-firefox' : 'dist';
 await rm(outdir, { recursive: true, force: true });
 await cp('public', outdir, { recursive: true });
 
+const manifestPath = `${outdir}/manifest.json`;
+const manifest = JSON.parse(await readFile(manifestPath, 'utf-8'));
+
 if (firefox) {
-  const manifestPath = `${outdir}/manifest.json`;
-  const manifest = JSON.parse(await readFile(manifestPath, 'utf-8'));
   manifest.browser_specific_settings = {
     gecko: {
       id: 'idle-out-alive-in@fvcified',
       strict_min_version: '128.0',
     },
   };
-  await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
+} else {
+  delete manifest.browser_specific_settings;
 }
+
+await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
 
 const ctx = await esbuild.context({
   entryPoints: {

@@ -35,7 +35,7 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 
 ### Chrome / Edge
 
-1. Clone or download this repo
+1. Get a copy of this repository
 2. `npm install`
 3. `npm run build` (compiles `src/` into `dist/`)
 4. Open `chrome://extensions` (or `edge://extensions`)
@@ -44,7 +44,7 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 
 ### Firefox
 
-1. Clone or download this repo
+1. Get a copy of this repository
 2. `npm install`
 3. `npm run build:firefox` (compiles `src/` into `dist-firefox/`)
 4. Open `about:debugging#/runtime/this-firefox`
