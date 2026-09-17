@@ -5,17 +5,17 @@ labels: bug
 ---
 
 **Environment**
-- Browser and version: e.g., Chrome 124, Firefox 128
-- Extension version: e.g., 1.0.0
+- Browser and version: <!-- e.g., Chrome 124, Firefox 128 -->
+- Extension version: <!-- e.g., 1.0.0 -->
 
 **Hostname(s) affected**
-- e.g., example.com
+<!-- e.g., example.com -->
 
 **What happened**
-- A clear description of the bug.
+<!-- A clear description of the bug. -->
 
 **What you expected to happen**
-- What should have happened instead.
+<!-- What should have happened instead. -->
 
 **Steps to reproduce**
 1.
@@ -23,4 +23,4 @@ labels: bug
 3.
 
 **Additional context**
-- Logs from the browser console (enable logging mode in Options if needed), screenshots, etc.
+<!-- Logs from the browser console (enable logging mode in Options if needed), screenshots, etc. -->
