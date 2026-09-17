@@ -5,17 +5,23 @@ labels: bug
 ---
 
 **Environment**
-- Browser and version: <!-- e.g., Chrome 124, Firefox 128 -->
-- Extension version: <!-- e.g., 1.0.0 -->
+- Browser and version: <!-- START: e.g., Chrome 124, Firefox 128 --> <!-- END -->
+- Extension version: <!-- START: e.g., 1.0.0 --> <!-- END -->
 
 **Hostname(s) affected**
-<!-- e.g., example.com -->
+<!-- START: e.g., example.com -->
+
+<!-- END -->
 
 **What happened**
-<!-- A clear description of the bug. -->
+<!-- START: Describe what happened. -->
+
+<!-- END -->
 
 **What you expected to happen**
-<!-- What should have happened instead. -->
+<!-- START: Describe what should have happened instead. -->
+
+<!-- END -->
 
 **Steps to reproduce**
 1.
@@ -23,4 +29,6 @@ labels: bug
 3.
 
 **Additional context**
-<!-- Logs from the browser console (enable logging mode in Options if needed), screenshots, etc. -->
+<!-- START: Logs from the browser console (enable logging mode in Options if needed), screenshots, etc. -->
+
+<!-- END -->

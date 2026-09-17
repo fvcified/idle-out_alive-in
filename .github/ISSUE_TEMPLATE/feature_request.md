@@ -5,10 +5,16 @@ labels: enhancement
 ---
 
 **What problem does this solve?**
-<!-- A clear description of the problem. -->
+<!-- START: Describe the problem you're trying to solve. -->
+
+<!-- END -->
 
 **What would you like to see?**
-<!-- A clear description of the feature or improvement. -->
+<!-- START: Describe the feature or improvement you'd like. -->
+
+<!-- END -->
 
 **Additional context**
-<!-- Any additional context, screenshots, or examples. -->
+<!-- START: Any additional context, screenshots, or examples. -->
+
+<!-- END -->
