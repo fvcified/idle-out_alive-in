@@ -43,7 +43,7 @@ const updateBadge = async (tabId, hostname) => {
   }
   const { hosts } = await chrome.storage.local.get({ hosts: [] });
   const active = matchesHost(hosts, hostname);
-  chrome.action.setBadgeText({ tabId, text: active ? 'ON' : '' });
+  chrome.action.setBadgeText({ tabId, text: active ? '•' : '' });
   chrome.action.setBadgeBackgroundColor({ tabId, color: '#34a853' });
 };
 

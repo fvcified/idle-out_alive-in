@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Prevent idle timeout by simulating user activity and blocking visibility detection.",
   "homepage_url": "https://github.com/fvcified/idle-out_alive-in",
+  "icons": {
+    "16": "icons/wcat-16.png",
+    "48": "icons/wcat-48.png",
+    "128": "icons/wcat-128.png"
+  },
   "permissions": [
     "storage",
     "tabs"
@@ -33,6 +38,10 @@
     "open_in_tab": true
   },
   "action": {
-    "default_title": "Toggle Idle Out, Alive In for this site"
+    "default_title": "Toggle Idle Out, Alive In for this site",
+    "default_icon": {
+      "16": "icons/wcat-16.png",
+      "48": "icons/wcat-48.png"
+    }
   }
 }
