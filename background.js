@@ -39,19 +39,35 @@ const updateBadge = async (tabId, hostname) => {
   if (typeof tabId !== 'number' || tabId < 0) return;
   if (!hostname) {
     chrome.action.setBadgeText({ tabId, text: '' });
-    chrome.action.setTitle({ tabId, title: 'Toggle Idle Out, Alive In for this site' });
     return;
   }
   const { hosts } = await chrome.storage.local.get({ hosts: [] });
   const active = matchesHost(hosts, hostname);
   chrome.action.setBadgeText({ tabId, text: active ? '✓' : '' });
   chrome.action.setBadgeBackgroundColor({ tabId, color: '#34a853' });
+};
+
+const DEFAULT_TITLE = 'Toggle Idle Out, Alive In for this site';
+
+const resetTitle = (tabId) => {
+  chrome.action.setTitle({ tabId, title: DEFAULT_TITLE });
+};
+
+const setToggleTitle = (tabId, hostname, active) => {
   chrome.action.setTitle({
     tabId,
     title: active
-      ? `Active on ${hostname}\nClick to disable`
-      : `Click to enable on ${hostname}`
+      ? `Idle Out, Alive In is active on ${hostname}\nClick to disable`
+      : `Idle Out, Alive In is inactive on ${hostname}\nClick to enable`
   });
+};
+
+const pendingToggleReload = new Set();
+
+const applyToggleTitle = async (tabId, hostname) => {
+  const { hosts } = await chrome.storage.local.get({ hosts: [] });
+  const active = matchesHost(hosts, hostname);
+  setToggleTitle(tabId, hostname, active);
 };
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -81,13 +97,26 @@ chrome.action.onClicked.addListener(async (tab) => {
 
   await chrome.storage.local.set({ hosts: newHosts });
   await updateBadge(tab.id, hostname);
+  setToggleTitle(tab.id, hostname, !exists);
 
-  if (tab.id) chrome.tabs.reload(tab.id);
+  if (tab.id) {
+    pendingToggleReload.add(tab.id);
+    chrome.tabs.reload(tab.id);
+  }
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === 'complete' && tab.url) {
+  if ((changeInfo.status === 'loading' || changeInfo.status === 'complete') && tab.url) {
     updateBadge(tabId, getHostname(tab.url));
+
+    if (pendingToggleReload.has(tabId)) {
+      if (changeInfo.status === 'complete') {
+        applyToggleTitle(tabId, getHostname(tab.url));
+        pendingToggleReload.delete(tabId);
+      }
+    } else {
+      resetTitle(tabId);
+    }
   }
 });
 
