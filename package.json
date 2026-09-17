@@ -1,0 +1,26 @@
+{
+  "name": "idle-out_alive-in",
+  "version": "1.0.0",
+  "description": "A Manifest V3 browser extension that prevents idle timeouts by simulating an active/visible tab, and blocks some events sites commonly use to detect when you switch tabs or lose focus.",
+  "scripts": {
+    "dev": "node build.mjs --watch",
+    "build": "node build.mjs --prod",
+    "check": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fvcified/idle-out_alive-in.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/fvcified/idle-out_alive-in/issues"
+  },
+  "homepage": "https://github.com/fvcified/idle-out_alive-in#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.3.0",
+    "@types/dom-navigation": "^1.0.7",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  }
+}

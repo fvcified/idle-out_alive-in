@@ -34,9 +34,11 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 ## Installation (manual / unpacked)
 
 1. Clone or download this repo
-2. Open `chrome://extensions` (or `edge://extensions`)
-3. Enable **Developer mode**
-4. Click **Load unpacked** and select this project's folder
+2. `npm install`
+3. `npm run build` — compiles `src/` into `dist/`
+4. Open `chrome://extensions` (or `edge://extensions`)
+5. Enable **Developer mode**
+6. Click **Load unpacked** and select the `dist/` folder (not the repo root)
 
 ## Usage
 
@@ -44,26 +46,44 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 2. Click the toolbar icon to add that hostname to the active list; the tab reloads automatically
 3. (Optional) Open Options to choose which features are active, set policies, or manage the host list in bulk
 
+## Development
+
+Source lives in `src/` as TypeScript, built with esbuild into `dist/` (the folder you actually load into the browser). `public/` holds static assets (manifest, icons, options page markup/CSS) copied into `dist/` as-is on every build.
+
+```bash
+npm run dev     # watch mode, rebuilds dist/ on save
+npm run build   # one-off production build (minified, no sourcemaps)
+npm run check   # full TypeScript type-check (tsc)
+```
+
+Chrome doesn't auto-reload extensions when `dist/` changes — after a rebuild, click the reload icon on the extension's card in `chrome://extensions`. If you edited `content.ts` or `inject.ts`, also refresh the tab you're testing on so the content script re-injects.
+
 ## Project Structure
 
 ```plain
 idle-out_alive-in/
 ├─ .git/
-├─ data/
-│  └─ options/
-│     ├─ css.css
+├─ src/                     <- TypeScript source
+│  ├─ background.ts
+│  ├─ content.ts
+│  ├─ inject.ts
+│  ├─ options.ts
+│  ├─ lib/
+│  │  └─ hosts.ts
+│  └─ types/
+│     ├─ prefs.ts
+│     ├─ messages.ts
+│     └─ globals.d.ts
+├─ public/                  <- Static assets, copied as-is into dist/
+│  ├─ manifest.json
+│  ├─ icons/
+│  └─ data/options/
 │     ├─ index.html
-│     └─ js.js
-├─ icons/
-│  ├─ wcat-16.png
-│  ├─ wcat-48.png
-│  ├─ wcat-128.png
-│  ├─ wcat-256.png
-│  └─ wcat.png
-├─ background.js
-├─ content.js
-├─ inject.js
-├─ manifest.json
+│     └─ css.css
+├─ dist/                    <- Build output, load THIS folder in chrome://extensions/ and find "Load unpacked"
+├─ build.mjs
+├─ package.json
+├─ tsconfig.json
 └─ README.md
 ```
 
