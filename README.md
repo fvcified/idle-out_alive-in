@@ -63,28 +63,36 @@ Chrome doesn't auto-reload extensions when `dist/` changes — after a rebuild, 
 ```plain
 idle-out_alive-in/
 ├─ .git/
-├─ src/                     <- TypeScript source
+├─ dist/ <- Build output, load THIS folder in chrome://extensions/ and find "Load unpacked"
+├─ node_modules/
+├─ public/ <- Static assets, copied as-is into dist/
+│  ├─ data/options/
+│  │  ├─ index.html
+│  │  └─ css.css
+│  ├─ icons/
+│  │  ├─ wcat-16.png
+│  │  ├─ wcat-48.png
+│  │  ├─ wcat-128.png
+│  │  ├─ wcat-256.png
+│  │  └─ wcat.png
+│  ├─ manifest.json
+├─ src/ <- TypeScript source
+│  ├─ lib/
+│  │  └─ hosts.ts
+│  ├─ types/
+│  │  ├─ globals.d.ts
+│  │  ├─ messages.ts
+│  │  └─ prefs.ts
 │  ├─ background.ts
 │  ├─ content.ts
 │  ├─ inject.ts
 │  ├─ options.ts
-│  ├─ lib/
-│  │  └─ hosts.ts
-│  └─ types/
-│     ├─ prefs.ts
-│     ├─ messages.ts
-│     └─ globals.d.ts
-├─ public/                  <- Static assets, copied as-is into dist/
-│  ├─ manifest.json
-│  ├─ icons/
-│  └─ data/options/
-│     ├─ index.html
-│     └─ css.css
-├─ dist/                    <- Build output, load THIS folder in chrome://extensions/ and find "Load unpacked"
+├─ .gitignore
 ├─ build.mjs
+├─ package-lock.json
 ├─ package.json
-├─ tsconfig.json
-└─ README.md
+├─ README.md
+└─ tsconfig.json
 ```
 
 ## Credit & Reference
