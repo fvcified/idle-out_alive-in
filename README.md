@@ -33,12 +33,23 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 
 ## Installation (manual / unpacked)
 
+### Chrome / Edge
+
 1. Clone or download this repo
 2. `npm install`
-3. `npm run build` — compiles `src/` into `dist/`
+3. `npm run build` (compiles `src/` into `dist/`)
 4. Open `chrome://extensions` (or `edge://extensions`)
 5. Enable **Developer mode**
 6. Click **Load unpacked** and select the `dist/` folder (not the repo root)
+
+### Firefox
+
+1. Clone or download this repo
+2. `npm install`
+3. `npm run build:firefox` (compiles `src/` into `dist-firefox/`)
+4. Open `about:debugging#/runtime/this-firefox`
+5. Click **Load Temporary Add-on**
+6. Select any file inside the `dist-firefox/` folder
 
 ## Usage
 
@@ -51,9 +62,11 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 Source lives in `src/` as TypeScript, built with esbuild into `dist/` (the folder you actually load into the browser). `public/` holds static assets (manifest, icons, options page markup/CSS) copied into `dist/` as-is on every build.
 
 ```bash
-npm run dev     # watch mode, rebuilds dist/ on save
-npm run build   # one-off production build (minified, no sourcemaps)
-npm run check   # full TypeScript type-check (tsc)
+npm run dev            # watch mode for Chrome/Edge
+npm run dev:firefox    # watch mode for Firefox
+npm run build          # production build for Chrome/Edge
+npm run build:firefox  # production build for Firefox
+npm run check          # full TypeScript type-check (tsc)
 ```
 
 Chrome doesn't auto-reload extensions when `dist/` changes — after a rebuild, click the reload icon on the extension's card in `chrome://extensions`. If you edited `content.ts` or `inject.ts`, also refresh the tab you're testing on so the content script re-injects.
@@ -64,6 +77,7 @@ Chrome doesn't auto-reload extensions when `dist/` changes — after a rebuild, 
 idle-out_alive-in/
 ├─ .git/
 ├─ dist/ <- Build output, load THIS folder in chrome://extensions/ and find "Load unpacked"
+├─ dist-firefox/ <- Firefox build output
 ├─ node_modules/
 ├─ public/ <- Static assets, copied as-is into dist/
 │  ├─ data/options/

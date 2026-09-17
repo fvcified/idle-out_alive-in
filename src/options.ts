@@ -1,3 +1,4 @@
+import browser from 'webextension-polyfill';
 import { DEFAULT_PREFS, type Policies, type Prefs } from './types/prefs';
 import type { ValidateMessage, ValidateResponse } from './types/messages';
 
@@ -18,7 +19,10 @@ const notify = (message: string, timeout = 2500): void => {
   toastTimer = setTimeout(() => (toast.textContent = ''), timeout);
 };
 
-chrome.storage.local.get(DEFAULT_PREFS, (raw) => {
+const icon = document.querySelector<HTMLImageElement>('.header-icon img');
+if (icon) icon.src = browser.runtime.getURL('icons/wcat.png');
+
+browser.storage.local.get(DEFAULT_PREFS).then((raw) => {
   const prefs = raw as Prefs;
 
   check('visibilityState').checked = prefs.visibilityState;
@@ -78,7 +82,7 @@ $('save').addEventListener('click', async () => {
 
   const validHosts: string[] = [];
   for (const h of rawHosts) {
-    const err = (await chrome.runtime.sendMessage({
+    const err = (await browser.runtime.sendMessage({
       method: 'validate',
       hosts: [h],
     } satisfies ValidateMessage)) as ValidateResponse;
@@ -92,26 +96,24 @@ $('save').addEventListener('click', async () => {
   area('hosts').value = validHosts.join(', ');
 
   const finalPrefs: Prefs = { ...toggles, policies, hosts: validHosts };
-  await chrome.storage.local.set(finalPrefs);
+  await browser.storage.local.set(finalPrefs);
   notify('Options saved');
 });
 
-$('reset').addEventListener('click', (e: MouseEvent) => {
+$('reset').addEventListener('click', async (e: MouseEvent) => {
   if (e.detail === 1) {
     notify('Double-click to reset all settings', 2000);
   } else {
-    chrome.storage.local.clear(() => {
-      chrome.storage.local.set({ _resetting: true }, () => {
-        chrome.runtime.reload();
-      });
-    });
+    await browser.storage.local.clear();
+    await browser.storage.local.set({ _resetting: true });
+    browser.runtime.reload();
   }
 });
 
 $('support').addEventListener('click', () => {
-  chrome.tabs.create({ url: chrome.runtime.getManifest().homepage_url });
+  browser.tabs.create({ url: browser.runtime.getManifest().homepage_url });
 });
 
 $('report').addEventListener('click', () => {
-  chrome.tabs.create({ url: chrome.runtime.getManifest().homepage_url + '/issues' });
+  browser.tabs.create({ url: browser.runtime.getManifest().homepage_url + '/issues' });
 });

@@ -43,5 +43,11 @@
       "16": "icons/wcat-16.png",
       "48": "icons/wcat-48.png"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "idle-out-alive-in@fvcified",
+      "strict_min_version": "128.0"
+    }
   }
 }

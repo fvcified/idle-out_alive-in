@@ -1,7 +1,8 @@
+import browser from 'webextension-polyfill';
 import { matchesHost } from './lib/hosts';
 import { DEFAULT_PREFS, type Prefs } from './types/prefs';
 
-chrome.storage.local.get(DEFAULT_PREFS, (raw) => {
+browser.storage.local.get(DEFAULT_PREFS).then((raw) => {
   const prefs = raw as Prefs;
   const hostname = location.hostname;
   if (!matchesHost(prefs.hosts, hostname)) return;
@@ -9,7 +10,7 @@ chrome.storage.local.get(DEFAULT_PREFS, (raw) => {
   const policy = (prefs.policies && prefs.policies[hostname]) || [];
 
   const script = document.createElement('script');
-  script.src = chrome.runtime.getURL('inject.js');
+  script.src = browser.runtime.getURL('inject.js');
 
   script.dataset.visibilityState = String(prefs.visibilityState);
   script.dataset.hidden = String(prefs.hidden);

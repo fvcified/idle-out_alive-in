@@ -4,7 +4,9 @@
   "description": "A Manifest V3 browser extension that prevents idle timeouts by simulating an active/visible tab, and blocks some events sites commonly use to detect when you switch tabs or lose focus.",
   "scripts": {
     "dev": "node build.mjs --watch",
+    "dev:firefox": "node build.mjs --watch --firefox",
     "build": "node build.mjs --prod",
+    "build:firefox": "node build.mjs --prod --firefox",
     "check": "tsc"
   },
   "repository": {
@@ -20,7 +22,11 @@
   "devDependencies": {
     "@types/chrome": "^0.3.0",
     "@types/dom-navigation": "^1.0.7",
+    "@types/webextension-polyfill": "^0.12.6",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "webextension-polyfill": "^0.12.0"
   }
 }
