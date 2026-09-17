@@ -115,7 +115,7 @@ idle-out_alive-in/
 
 Found a bug or have a feature request? [Open an issue](https://github.com/fvcified/idle-out_alive-in/issues).
 
-If you'd like to modify or build on this, feel free to [fork the repository](https://github.com/fvcified/idle-out_alive-in/fork). It's yours to keep and modify however you like.
+If you'd like to modify or build on this, feel free to [fork the repository](https://github.com/fvcified/idle-out_alive-in/fork). No need to ask for permission. It's yours to keep and modify however you like.
 
 ## Credit & Reference
 
