@@ -57,8 +57,12 @@ const setToggleTitle = (tabId, hostname, active) => {
   chrome.action.setTitle({
     tabId,
     title: active
-      ? `Idle Out, Alive In is active on ${hostname}\nClick to disable`
-      : `Idle Out, Alive In is inactive on ${hostname}\nClick to enable`
+      ? `Idle Out, Alive In is --active for\n` +
+        `-> ${hostname}\n` +
+        `Click to disable\n`
+      : `Idle Out, Alive In is --inactive for\n` +
+        `-> ${hostname}\n` +
+        `Click to enable\n`
   });
 };
 
