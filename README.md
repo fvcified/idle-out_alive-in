@@ -51,7 +51,7 @@ The extension is **OFF by default** on every site. You need to enable it per hos
 5. Click **Load Temporary Add-on**
 6. Select any file inside the `dist-firefox/` folder
 
-> **Note:** Firefox only supports temporary add-ons for unsigned extensions. The extension will be unloaded when Firefox is closed. To use it permanently, the extension must be signed via [AMO](https://addons.mozilla.org).
+> **Note**: Firefox only supports temporary add-ons for unsigned extensions. The extension will be unloaded when Firefox is closed. To use it permanently, the extension must be signed via [AMO](https://addons.mozilla.org).
 
 ## Usage
 
@@ -71,7 +71,7 @@ npm run build:firefox  # production build for Firefox
 npm run check          # full TypeScript type-check (tsc)
 ```
 
-Chrome doesn't auto-reload extensions when `dist/` changes after a rebuild, click the reload icon on the extension's card in `chrome://extensions`. If you edited `content.ts` or `inject.ts`, also refresh the tab you're testing on so the content script re-injects.
+> **Note**: Chrome doesn't auto-reload extensions when `dist/` changes after a rebuild, click the reload icon on the extension's card in `chrome://extensions`. If you edited `content.ts` or `inject.ts`, also refresh the tab you're testing on so the content script re-injects.
 
 ## Project Structure
 
